@@ -116,4 +116,49 @@ describe("Stack tests", () => {
         expect(mappedStack.isEmpty()).toBe(true);
         expect(mappedStack).not.toBe(stack);
     });
+
+    test('filtering an empty stack returns a new empty stack', () => {
+        const stack = emptyStack<unknown>();
+
+        const filteredStack = stack.filter(_element => fail());
+
+        expect(filteredStack.isEmpty()).toBe(true);
+        expect(filteredStack).not.toBe(stack);
+    });
+
+    test('filtering a one-element stack with that element satisfying the condition returns a new stack with that element', () => {
+        const stack = emptyStack<number>();
+        stack.push(123);
+
+        const filteredStack = stack.filter(element => element > 100);
+
+        assertType<Equal<Stack<number>, typeof filteredStack>>();
+        expect(filteredStack.pop()).toEqual(123);
+        expect(filteredStack.isEmpty()).toBe(true);
+        expect(filteredStack).not.toBe(stack);
+    });
+
+    test('filtering a one-element stack with that element not satisfying the condition returns a new empty stack', () => {
+        const stack = emptyStack<number>();
+        stack.push(123);
+
+        const filteredStack = stack.filter(element => element < 100);
+
+        expect(filteredStack.isEmpty()).toBe(true);
+        expect(filteredStack).not.toBe(stack);
+    });
+
+    test('filtering a many-element stack returns a new stack with the elements that match the condition in the same order', () => {
+        const stack = emptyStack<string>();
+        stack.push("ok A");
+        stack.push("ko B");
+        stack.push("ok C");
+
+        const filteredStack = stack.filter(element => element.startsWith("ok"));
+
+        expect(filteredStack.pop()).toEqual("ok C");
+        expect(filteredStack.pop()).toEqual("ok A");
+        expect(filteredStack.isEmpty()).toBe(true);
+        expect(filteredStack).not.toBe(stack);
+    });
 })

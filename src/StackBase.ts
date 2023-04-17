@@ -2,11 +2,11 @@ import {Stack} from "./Stack";
 import {StackNode} from "./StackNode";
 
 export class StackBase<T> implements StackNode<T> {
-    isEmpty(): boolean {
+    isEmpty(): true {
         return true;
     }
 
-    deepSize(): number {
+    deepSize(): 0 {
         return this.size();
     }
 
@@ -14,15 +14,19 @@ export class StackBase<T> implements StackNode<T> {
         throw new Error(Stack.ERROR_STACK_EMPTY_DESCRIPTION);
     }
 
-    size(): number {
+    size(): 0 {
         return 0;
     }
 
-    previous(): StackNode<T> {
+    previous(): this {
         return this;
     }
 
     mapToStack<R>(elementMapping: (element: T) => R): Stack<R> {
         return new Stack<R>();
+    }
+
+    filterToStack(selectingCondition: unknown): Stack<T> {
+        return new Stack<T>();
     }
 }

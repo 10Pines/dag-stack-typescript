@@ -34,4 +34,11 @@ export class PushedObject<T> implements StackNode<T> {
         mappedStack.push(elementMapping(this._element));
         return mappedStack;
     }
+
+    filterToStack(selectingCondition: (element: T) => boolean): Stack<T> {
+        const filteredStack = this._previous.filterToStack(selectingCondition);
+        if (selectingCondition(this._element))
+            filteredStack.push(this._element);
+        return filteredStack;
+    }
 }

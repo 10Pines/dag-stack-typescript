@@ -7,4 +7,5 @@ export interface StackNode<T> {
     element(): T;
     previous(): StackNode<T>;
     mapToStack<R>(elementMapping: (elementToMap: T) => R): Stack<R>;
+    filterToStack(selectingCondition: (element: T) => boolean): Stack<T>;
 }

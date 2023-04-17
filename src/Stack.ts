@@ -36,4 +36,8 @@ export class Stack<T> {
     map<R>(elementMapping: (elementToMap: T) => R): Stack<R> {
         return this._top.mapToStack(elementMapping);
     }
+
+    filter(selectingCondition: (element: T) => boolean): Stack<T> {
+        return this._top.filterToStack(selectingCondition);
+    }
 }
