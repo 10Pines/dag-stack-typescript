@@ -1,0 +1,14 @@
+{
+  "name": "dag-stack-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.21.0",
+    "@types/jest": "^29.4.0",
+    "jest": "^29.4.3"
+  }
+}
